@@ -3,11 +3,11 @@ def quick_sort(lista):
         return lista
 
     pivote = lista[0]
-    mayores = [x for x in lista[1:] if x > pivote]
-    iguales = [x for x in lista if x == pivote]
-    menores = [x for x in lista[1:] if x < pivote]
-
+    mayores = [x for x in lista[1:] if x[1] > pivote[1]]
+    iguales = [x for x in lista if x[1] == pivote[1]]
+    menores = [x for x in lista[1:] if x[1] < pivote[1]]
     return quick_sort(mayores) + iguales + quick_sort(menores)
+
 
 def Ingresar():
     repartidores = {}
@@ -65,6 +65,7 @@ def mostrar(repartidores):
     print("\nLista de repartidores con mas paquetes entregados")
     for nombre, paquetes, zona in ordenados:
         print(f"{nombre} = {paquetes} paquetes entregados")
+
 
 
 repartidores =Ingresar()
