@@ -83,8 +83,37 @@ def buscar(repartidores):
     if not encontrado:
         print(f"\nRepartidor '{nombre_buscar}' no encontrado.")
 
+def estadisticas(repartidores):
+    print("\nEstadisticas de los repartidores")
+
+    if not repartidores:
+        print("No hay datos para mostrar.")
+        return
+
+    total = 0
+    cantidades = []
+
+    for datos in repartidores.values():
+        total += datos["paquetes"]
+        cantidades.append(datos["paquetes"])
+
+    promedio = total / len(repartidores)
+    max_entregas = max(cantidades)
+    min_entregas = min(cantidades)
+
+
+    repartidores_max = [nombre for nombre, datos in repartidores.items() if datos["paquetes"] == max_entregas]
+    repartidores_min = [nombre for nombre, datos in repartidores.items() if datos["paquetes"] == min_entregas]
+
+    print(f"Total de paquetes entregados: {total}")
+    print(f"Promedio de entregas: {promedio:.2f}")
+    print(f"Mayor número de entregas: {', '.join(repartidores_max)} ({max_entregas})")
+    print(f"Menor número de entregas: {', '.join(repartidores_min)} ({min_entregas})")
+
 repartidores =Ingresar()
 mostrar(repartidores)
+estadisticas(repartidores)
 buscar(repartidores)
+
 
 
