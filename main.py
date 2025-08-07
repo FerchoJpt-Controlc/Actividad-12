@@ -51,10 +51,12 @@ def Ingresar():
             else:
                 break
 
-        repartidores[nombre] = {"paquetes": paquetes, "zona": zona}
+        repartidores[nombre] = {
+            "paquetes": paquetes,
+            "zona": zona
+        }
 
-    print("\nRegistro original")
-    print(repartidores)
+    print("\nrepartidores reguistrados")
 
     return repartidores
 
@@ -67,7 +69,22 @@ def mostrar(repartidores):
         print(f"{nombre} = {paquetes} paquetes entregados")
 
 
+def buscar(repartidores):
+    nombre_buscar = input("\nBuscar repartidor: ").strip()
+
+    encontrado = False
+    for nombre in repartidores:
+        if nombre.lower() == nombre_buscar.lower():
+            datos = repartidores[nombre]
+            print(f"\n{nombre} entregó {datos['paquetes']} paquetes en la zona {datos['zona']}.")
+            encontrado = True
+            break
+
+    if not encontrado:
+        print(f"\nRepartidor '{nombre_buscar}' no encontrado.")
 
 repartidores =Ingresar()
 mostrar(repartidores)
+buscar(repartidores)
+
 
